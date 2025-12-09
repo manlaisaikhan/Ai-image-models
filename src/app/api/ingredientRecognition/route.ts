@@ -15,7 +15,7 @@ export const POST = async (req: NextRequest) => {
                     Үүнд тохирох орцуудын жагсаалтыг богино, ойлгомжтойгоор гарга.
                     Хэмжээ, грамаар өгөх албагүй, зөвхөн орцын нэрнүүд байхад болно.`;
     const res = await geminiApi.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-flash",
       contents: [
         {
           parts: [{ text: prompt }],

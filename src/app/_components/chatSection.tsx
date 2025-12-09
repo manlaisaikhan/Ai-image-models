@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useEffect } from "react";
 import { ExitIcon } from "../_icons/exitIcon";
 import { SendMessageIcon } from "../_icons/sendMessageIcon";
@@ -13,12 +13,17 @@ export const ChatSection = ({ changeState }: Props) => {
   const [userMessage, setUserMessage] = useState("");
   const [assistantMessage, setAssistantMessage] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const messageEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTimeout(() => {
       setAssistantMessage(["Hello! How can I help you?"]);
     }, 250);
   }, []);
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [assistantMessage, loading]);
 
   const handleSendMessage = async () => {
     if (!userMessage.trim()) return;
@@ -61,11 +66,11 @@ export const ChatSection = ({ changeState }: Props) => {
           <ExitIcon />
         </button>
       </div>
-      <div className="flex flex-col gap-2 justify-start w-full h-full pt-4 overflow-y-auto px-6">
+      <div className="flex flex-col gap-2 justify-start w-full min-h-0 pt-4 overflow-y-auto px-6 grow">
         {assistantMessage.map((msg, index) => {
           return (
             <div
-              className={`w-fit max-w-[260px] min-h-9 rounded-xl px-4 py-2 text-[14px] ${
+              className={`w-fit max-w-[260px] rounded-xl px-4 py-2 text-[14px] ${
                 msg.startsWith("You:")
                   ? "bg-[#f4f4f5] text-black self-end"
                   : "bg-black text-white self-start"
@@ -81,8 +86,9 @@ export const ChatSection = ({ changeState }: Props) => {
             Please wait <Spinner />
           </div>
         )}
+        <div ref={messageEndRef} />
       </div>
-      <div className="w-full min-h-14 border-t border-zinc-200 flex items-center justify-around">
+      <div className="w-full min-h-14 border-t border-zinc-200 flex items-center justify-around mt-4">
         <textarea
           className="w-[300px] h-10 rounded-lg border border-zinc-200 outline-none text-[#71717a] font-normal text-[14px] pl-3 pr-3 pb-2 pt-2"
           placeholder="Type your message..."

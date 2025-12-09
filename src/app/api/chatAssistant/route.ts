@@ -20,7 +20,7 @@ export const POST = async (req: NextRequest) => {
                           User message: "${chat}"`;
 
     const res = await geminiApi.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-flash",
       contents: [{ parts: [{ text: systemPrompt }] }],
     });
 
