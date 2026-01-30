@@ -40,7 +40,6 @@ export const ModelIngredientRecognition = () => {
       console.log(err);
     }
   };
-  console.log(res);
 
   const renderDescription = () => {
     if (loading === true) {

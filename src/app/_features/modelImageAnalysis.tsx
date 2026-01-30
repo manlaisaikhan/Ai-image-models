@@ -46,8 +46,6 @@ export const ModelImageAnalysis = () => {
       }
       setObjects(data.objects || []);
       setLoading(false);
-      console.log(formData, "this is form data");
-      console.log(image, "this is image");
     } catch (err) {
       console.log(err, "fix your front end");
     } finally {

@@ -56,8 +56,6 @@ export const ChatSection = ({ changeState }: Props) => {
     }
   };
 
-  console.log(assistantMessage, "this is assistant message");
-
   return (
     <div className="w-[380px] h-[472px] border bg-white border-zinc-200 rounded-lg flex flex-col justify-between mr-9 mb-9">
       <div className="w-full h-12 border-b border-zinc-200 flex items-center justify-between pl-4 pr-4">
