@@ -1,4 +1,4 @@
-"usse client";
+"use client";
 export const Header = () => {
   return (
     <div className="w-full h-14 flex items-center border-b shrink-0">
